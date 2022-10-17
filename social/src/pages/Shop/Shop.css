@@ -1,0 +1,97 @@
+a,
+a:hover {
+    text-decoration: none;
+    color: #333;
+}
+/* .tags {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+} */
+
+
+
+.shop a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.tags a {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 5px;
+    background-color: #333;
+    color: #FFF;
+    margin:2px;
+}
+
+.widget {
+    margin-bottom: 40px;
+    margin-top: 30px;
+    
+}
+
+.widgetMe{
+width: 350px;
+}
+
+.widget h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.widget ul li a {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.shop-area h2 {
+    font-size: 25px;
+    color: #FFF;
+    text-align: center;
+    padding-bottom:20px ;
+}
+
+.shop-area .shop-item h3{
+    font-size: 16px;
+
+}
+.card-img{
+    height: 350px;
+    object-fit: cover;
+}
+
+.shop-area .shop-item p{
+    font-size: 14px;
+}
+
+.menu {
+    background-color: #333;
+
+}
+
+.menu ul {
+    margin: 0px;
+}
+
+.menu ul li {
+    display: inline-block;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #ccc;
+    display: block;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+
+.header img {
+    height: 200px;
+}
+
+.single-product img {
+    width: 100%;
+}

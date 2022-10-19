@@ -90,9 +90,12 @@ try {
 export const updateProduct = async (req, res, next) => {
     const {id}=req.params
     try {
-        await Product.findByIdAndUpdate(id, req.body);
+        const product= await Product.findByIdAndUpdate(id, req.body);
         res.status(201).json({
-            message: 'Updated Successfully'
+            message: 'Updated Successfully',
+            product
+            
+            
         })
     } catch (error) {
         console.log(error);

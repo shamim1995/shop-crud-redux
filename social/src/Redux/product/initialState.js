@@ -5,6 +5,7 @@ const initialState = {
     skeleton:false,
     error:null,
     singleProduct:[]
+    
 }
 
 export default initialState;

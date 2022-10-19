@@ -1,7 +1,6 @@
 
 import { combineReducers } from 'redux';
 import { categoryReducer } from './category/categoryReducer.js';
-import { modalView } from './modal/modalReducer.js';
 import productReducer from './product/productReducer.js';
 import { tagReducer } from './tags/tagReducer.js';
 
@@ -9,8 +8,8 @@ import { tagReducer } from './tags/tagReducer.js';
 const rootReducer = combineReducers({
     products:productReducer,
     category:categoryReducer,
-    tags:tagReducer,
-    eidt_modal: modalView
+    tags:tagReducer
+   
     
     
 })

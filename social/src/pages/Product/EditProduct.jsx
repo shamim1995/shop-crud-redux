@@ -1,9 +1,13 @@
 
 import React, { useEffect, useState } from 'react'
 import {Modal} from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { editProducts } from '../../Redux/product/action';
 
-const EditProduct = (props) => {
+
+const EditProduct = ({show, hide}) => {
+ const dispatch = useDispatch();
+
       const [productEditInput, setProductEditInput] = useState({
         name: "",
         regular_price: "",
@@ -16,16 +20,15 @@ const EditProduct = (props) => {
         category: [],
         tags: [],
       });
+    
 
-const {products} = useSelector(state => state.products)
+const { singleProduct } = useSelector((state) => state.products);
 
 useEffect(() => {
-  const editProduct = products.filter(
-    (product) => product._id === props.edit.editProductId
-  )[0];
-
-  setProductEditInput({ ...editProduct });
-}, [props.edit.editProductId, products]);
+  
+  
+  setProductEditInput(singleProduct)
+}, [singleProduct]);
 
 
 
@@ -72,7 +75,7 @@ const {name, regular_price, sale_price, stock, category , tags}=productEditInput
     data.append('stock', stock)
     data.append('photo',productEditInput.file)
     data.append('category',category)
-    data.append('tags',productEditInput.tags)
+    data.append('tags', tags)
    
 
     for (let i = 0; i<productEditInput.gall.length; i++) {
@@ -81,13 +84,12 @@ const {name, regular_price, sale_price, stock, category , tags}=productEditInput
       
       
     }
-
-
-
+   dispatch(editProducts(data))
 
 
   }
     const {categories} = useSelector(state=>state.category)
+    
     const {tags : storedTags}= useSelector(state=>state.tags)
 // category checked or unchecked 
 
@@ -112,11 +114,14 @@ const handleCategoryChange = (e)=>{
 
 }
 
+
+
+ 
 //tag checked unchecked 
 
 const handleTagChange = (e)=>{
   if(e.target.checked){
-    let tag = [...tags]
+    let tag = productEditInput.tags;
     tag.push(e.target.value)
 
     setProductEditInput((prev)=>({
@@ -141,7 +146,7 @@ const handleTagChange = (e)=>{
      <div className="container my-5">
        <div className="row">
          <div className="col-md-5 m-auto">
-           <Modal animation={true} show={props.edit.status} onHide={props.hide}>
+           <Modal animation={true} show={show} onHide={hide}>
              <Modal.Header closeButton>
                <Modal.Title>Update Product</Modal.Title>
              </Modal.Header>
@@ -208,15 +213,21 @@ const handleTagChange = (e)=>{
                  </div>
                  <span>Select Category</span>
                  <br />
+                 
+                
                  {categories.map((data, index) => (
                    <div className="my-2">
+
                      <input
+                      checked={singleProduct.category.includes(data.name) ? 'checked' : ''}
                        name="category"
                        className=""
                        value={data.name}
                        onChange={handleCategoryChange}
                        type="checkbox"
+                       
                      />
+
                      {data.name} <br />
                    </div>
                  ))}
@@ -238,7 +249,7 @@ const handleTagChange = (e)=>{
                  <div className="mt-3">
                    <button
                      type="submit"
-                     onClick={props.hide}
+                     onClick={hide}
                      className="btn btn-primary w-100"
                    >
                      updated

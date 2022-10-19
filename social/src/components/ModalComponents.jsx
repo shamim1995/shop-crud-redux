@@ -328,6 +328,7 @@ const {tags}= useSelector(state=>state.tags)
               
               )
             }
+            
             <span>Select Tag</span>
             {
               tags.map((data, index)=>

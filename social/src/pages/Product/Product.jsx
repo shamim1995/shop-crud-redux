@@ -10,7 +10,7 @@ import SingleProduct from '../Shop/SingleProduct';
 import { getSingleProduct, productDeleted } from '../../Redux/product/action';
 import swal from 'sweetalert';
 import EditProduct from './EditProduct';
-import { modalShow } from '../../Redux/modal/action';
+
 
 
 
@@ -69,15 +69,15 @@ const dispatch = useDispatch();
 // eidt form 
 
 
-const [edit, setEdit] = useState({
-    status : false,
-    editProductId : null
-})
+const [show, setEdit] = useState(false)
 
-const handleProductEditShow = (id)=> setEdit({status : true , editProductId : id})
-const handleEditProductHide = () => {
-    setEdit(false)
+
+const handleProductEditShow = (id)=>{
+   dispatch(getSingleProduct(id));
+   setEdit(true)
 }
+
+const handleEditProductHide = () => setEdit(false)
 
     
 
@@ -86,7 +86,7 @@ const handleEditProductHide = () => {
     <>
     <ModalComponents type='product' show={product} hide={handleProductHide}/>
     <SingleProduct single={  single } handleSingleHide =  { handleSingleHide }  />
-    <EditProduct edit={edit} hide = {handleEditProductHide} />
+    <EditProduct show={show} hide = {handleEditProductHide} />
     
     <div className="container my-5">
         <div className="row">
@@ -116,6 +116,7 @@ const handleEditProductHide = () => {
 
                                 {
                                     products.map(( data,index ) =>
+                                    
                                     <tr>
                                     <td>{index+1}</td>
                                     <td>{data.name}</td>

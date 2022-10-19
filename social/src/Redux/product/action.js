@@ -22,6 +22,7 @@ export const productFail=(payload)=>({
     type:PRODUCT_FAIL,
     payload:payload.error
 })
+
 // single product get 
 
 export const singleProduct = (payload)=>{
@@ -30,6 +31,8 @@ return({
     payload
 })
 }
+
+
 
 
 // make slug 
@@ -75,6 +78,32 @@ export const createProducts = (data)=>async(dispatch)=>{
         dispatch(getAllProducts())
         
         swalAlert('Product Created','Successfully done', 'success')
+        
+      }).catch(error=>{
+         
+        dispatch(productFail(error.message))
+        
+       
+      })
+
+ } catch (error) {
+    dispatch(productFail(error.message))
+ }
+
+
+}
+
+// edit product 
+
+export const editProducts = (id,data)=>async(dispatch)=>{
+  
+ try {
+       
+     await axios.put(`http://localhost:5050/api/v1/product/${id}`,data).then(res => {
+      
+        dispatch(getAllProducts())
+        
+        swalAlert('Product updated','Successfully done', 'success')
         
       }).catch(error=>{
          

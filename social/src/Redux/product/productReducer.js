@@ -32,6 +32,8 @@ const productReducer = (state=initialState,{type, payload})=>{
                 ...state,
                 singleProduct: state.products.find(data=> data._id===payload)
             }
+
+       
            
         default:
             return state
